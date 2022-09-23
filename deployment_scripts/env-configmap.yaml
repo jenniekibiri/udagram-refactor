@@ -1,0 +1,12 @@
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: env-configmap 
+data:
+  # Configuration values can be set as key-value properties
+  POSTGRES_HOST: postgres.cnmhot2u0x0u.us-east-1.rds.amazonaws.com
+  POSTGRES_DB: postgres
+  AWS_BUCKET: jen-microservice-dev
+  AWS_REGION: us-east-1
+  JWT_SECRET: hello
+  URL: http://localhost:8100

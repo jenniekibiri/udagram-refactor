@@ -1,0 +1,29 @@
+language: node_js
+node_js:
+  - "16"
+cache:
+  directories:
+    - "node_modules"
+branches:
+  only:
+    - main
+services:
+  - docker
+script:
+  - echo '***Build starts***'
+  - docker-compose -f docker-compose-build.yaml build --parallel
+  - echo '***Build ends***'
+  - echo '***Tagging images starts***'
+  - docker tag udagram-api-feed jennykibiri/udagram-api-feed:v2
+  - docker tag udagram-api-user jennykibiri/udagram-api-user:v2
+  - docker tag udagram-frontend jennykibiri/udagram-frontend:v2
+  - docker tag reverseproxy jennykibiri/reverseproxy:v2
+  - echo '***Tagging images ends***'
+
+  - echo '***Pushing images to docker hub***'
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push $DOCKER_USERNAME/udagram-frontend:v2
+  - docker push $DOCKER_USERNAME/udagram-api-user:v2
+  - docker push $DOCKER_USERNAME/udagram-api-feed:v2
+  - docker push $DOCKER_USERNAME/reverseproxy:v2
+  - echo '***Pushing images to docker hub ends***'
