@@ -72,6 +72,7 @@ Launch the frontend app locally.
 * You can visit `http://localhost:8100` in your web browser to verify that the application is running. You should see a web interface.
 
 
+
 ## Tips
 1. Take a look at `udagram-api` -- does it look like we can divide it into two modules to be deployed as separate microservices?
 2. The `.dockerignore` file is included for your convenience to not copy `node_modules`. Copying this over into a Docker container might cause issues if your local environment is a different operating system than the Docker image (ex. Windows or MacOS vs. Linux).
